@@ -53,7 +53,7 @@ Practicar la manipulación de arrays y objetos en JavaScript de manera progresiv
 
     ```
     
-    - Utilizando `filter` debes cfiltrar productos que tengan la categoría 'Ropa' e imprimirlos en pantalla.
+    - Utilizando `filter` debes filtrar productos que tengan la categoría 'Ropa' e imprimirlos en pantalla.
     - Filtra los productos con precio mayor de 30 en un nuevo array llamado `preciosMayores`.
 
 - **RETO (Opcional):** Si quieres retarte te invitamos a crear un programa que sea capaz de recorrer el array estudiantes de el punto 2 y encontrar a el/la estudiante con el mayor promedio, utilizando un bucle for o cualquer otro método visto en clase

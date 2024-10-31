@@ -20,7 +20,7 @@ let mayorPromedio = estudiantes[0]
 
 for (let i = 0; i < estudiantes.length; i++){
     
-    estudiantes[].promedio > mayorPromedio.promedio ? mayorPromedio = estudiantes[i] : null
+    estudiantes[i].promedio > mayorPromedio.promedio ? mayorPromedio = estudiantes[i] : null
 }
 
 console.log(`El estudiante con mayor promedio es ${mayorPromedio.nombre} con un promedio de ${mayorPromedio.promedio} `)

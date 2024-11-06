@@ -1,0 +1,32 @@
+{
+  "name": "proyecto_tarea_3_camilo_perez",
+  "version": "0.0.1",
+  "description": "proyecto de la tarea 3",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node init.js",
+    "dev": "nodemon async.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caanpebe9504/Modulo_5_Node_Js_Camilo_Perez_3057079896.git"
+  },
+  "keywords": [
+    "tarea",
+    "-",
+    "actividad",
+    "-",
+    "estudio"
+  ],
+  "author": "Camilo Pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caanpebe9504/Modulo_5_Node_Js_Camilo_Perez_3057079896/issues"
+  },
+  "homepage": "https://github.com/caanpebe9504/Modulo_5_Node_Js_Camilo_Perez_3057079896#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

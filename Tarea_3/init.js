@@ -2,4 +2,4 @@ import esperarSegundos from './async.js'
 
 esperarSegundos(3)
 esperarSegundos(1)
-esperarSegundos(10)
+esperarSegundos(2)

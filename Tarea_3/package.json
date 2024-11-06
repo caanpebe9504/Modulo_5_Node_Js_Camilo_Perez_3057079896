@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node init.js",
-    "dev": "nodemon async.js",
+    "dev": "nodemon init.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

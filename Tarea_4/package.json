@@ -1,0 +1,11 @@
+{
+  "name": "generador-numeros",
+  "version": "1.0.0",
+  "scripts": {
+    
+    "generate-file": "nodemon generator.js",
+    "find-even-number": "nodemon find.js"
+    
+  },
+  "dependencies": {}
+}

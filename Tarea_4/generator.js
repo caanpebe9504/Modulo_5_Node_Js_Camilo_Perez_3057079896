@@ -1,4 +1,4 @@
-const fs = require('fs');
+import * as fs from 'fs'
 
 let numeros = [];
 for (let i = 1; i <= 1000; i++) {

@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 
-fs.readFile('numeros.txt', 'utf8', (err, data) => {
+fs.readFile('numeros.txt', { encoding: 'utf8'} , (err, data) => {
   if (err) {
     console.error('Hubo un error leyendo el archivo:', err);
     return;
@@ -18,7 +18,7 @@ fs.readFile('numeros.txt', 'utf8', (err, data) => {
   console.log('Números pares:', pares);
 
   
-fs.writeFile('pares.txt', pares.join('\n'), (err) => {
+fs.writeFile('pares.txt', pares.join(' , '), (err) => {
     if (err) {
       console.error('Hubo un error escribiendo el archivo de pares:', err);
     } else {

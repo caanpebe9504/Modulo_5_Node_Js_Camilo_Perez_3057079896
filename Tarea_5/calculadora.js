@@ -40,4 +40,4 @@ console.log(process.argv)
 console.log(`Recibido: num1 = ${num1}, operacion = ${operacion}, num2 = ${num2}`);
 
 const resultado = calcular(num1, operacion, num2);
-console.log(`Resultado: ${resultado}`);
+console.log(`Resultado: ${resultado}`)

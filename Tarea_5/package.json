@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "En esta tarea, se te pide desarrollar una calculadora básica en Node.js que pueda realizar operaciones simples de suma, resta, multiplicación y división. La calculadora deberá recibir los números y la operación directamente como argumentos de línea de comandos al ejecutar el script.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node calculadora.js",
+    "dev": "node --watch calculadora.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

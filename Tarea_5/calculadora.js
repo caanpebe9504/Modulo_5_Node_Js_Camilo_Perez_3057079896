@@ -1,6 +1,4 @@
-// calculadora.js
 
-// Funciones para las operaciones
 const suma = (a, b) => a + b;
 const resta = (a, b) => a - b;
 const multiplicacion = (a, b) => a * b;
@@ -11,7 +9,6 @@ const division = (a, b) => {
   return a / b;
 };
 
-// Manejador principal de la calculadora
 const calcular = (num1, operacion, num2) => {
   // Convertir los argumentos a números flotantes
   num1 = parseFloat(num1);
@@ -23,23 +20,23 @@ const calcular = (num1, operacion, num2) => {
 
   // Realizar la operación según el operador
   switch (operacion) {
-    case '+':
+    case "+":
       return suma(num1, num2);
-    case '-':
+    case "-":
       return resta(num1, num2);
-    case '*':
+    case "*":
       return multiplicacion(num1, num2);
-    case '/':
+    case "/":
+        console.log('Operación: División');
       return division(num1, num2);
     default:
       return 'Error: Operación no válida. Usa +, -, * o /.';
   }
 };
 
-// Obtener los argumentos de la línea de comandos (comienza desde el tercer argumento)
 const [,, num1, operacion, num2] = process.argv;
+console.log(process.argv)
 
-// Depuración: Ver los valores recibidos
 console.log(`Recibido: num1 = ${num1}, operacion = ${operacion}, num2 = ${num2}`);
 
 const resultado = calcular(num1, operacion, num2);

@@ -1,42 +1,57 @@
-## Tarea: Crear una API Básica con Node.js
+# API de Productos
 
-### Objetivos
+¡Hola de nuevo! 
 
-1. Crear un servidor HTTP utilizando la librería http de Node.js.
-2. Implementar dos endpoints accesibles mediante el método GET.
-3. Utilizar un array o un archivo .json como base de datos.
+Te comparto está API básica para gestionar una lista de productos.
 
-### Descripción de la tarea
+## Endpoints
 
-1. Debes crear una pequeña API que gestione una lista de productos. Tu API debe correr por el puerto `3002`
+### `GET /products`
 
-2. Usa la librería `http` de Node.js para crear el servidor.
+Devuelve la lista completa de productos.
 
-3. La API debe tener dos endpoints:
+#### Respuesta:
 
-    - `GET /products:` Este endpoint debe retornar la lista de todos los productos en formato JSON.
-    - `POST /products/` Este endpoint debe Recibir un producto nuevo y agregarlo al array de productos, opcional crear un archivo json con la libreria FS para almacenarlo alli
+```json
+[
+  { "id": 1, "name": "Laptop", "price": 999.99, "category": "Electronics" },
+  { "id": 2, "name": "Chair", "price": 49.99, "category": "Furniture" },
+  { "id": 3, "name": "Pen", "price": 1.99, "category": "Stationery" }
+]
+```
+### `POST /products`
 
-4. **Formato de datos:** Cada producto debe ser un objeto con las siguientes propiedades:  `id` (número), `name` (string), `price` (número), y `category` (string). Los datos deben estar guardados en una variable, a continuación encontrarás un ejemplo de tu base de datos
+Agrega un nuevo producto a la lista de productos.
 
-    ```javascript
-        const products = [
-            { id: 1, name: 'Laptop', price: 999.99, category: 'Electronics' },
-            { id: 2, name: 'Chair', price: 49.99, category: 'Furniture' },
-            { id: 3, name: 'Pen', price: 1.99, category: 'Stationery' }
-        ];
-    ```
+### Estructura del nuevo producto para la solicitud:
 
-5. **Opcional**: Puedes usar un archivo .json como base de datos en lugar de crear una constante como la descrita en el paso 4. En este caso el archivo que debes usar debe ser como el siguiente:
 
-    products.json
+```
+{
+  "name": "Phone",
+  "price": 499.99,
+  "category": "Electronics"
+}
 
-    ```json
-        [
-            { "id": 1, "name": "Laptop", "price": 999.99, "category": "Electronics" },
-            { "id": 2, "name": "Chair", "price": 49.99, "category": "Furniture" },
-            { "id": 3, "name": "Pen", "price": 1.99, "category": "Stationery" }
-        ];
-    ```
+```
+### Respuesta: 
 
-6. Documenta y prueba tu API usando postman y envia la evidencia a el docente. Puedes agregar un archivo README.md a tu API para documentar como usarla y agregar los pantallazos de postman
+```
+{
+  "id": 4,
+  "name": "Phone",
+  "price": 499.99,
+  "category": "Electronics"
+}
+
+```
+
+## Instrucciones de Uso
+
+1. Clona este repositorio o descarga los archivos.
+
+2. Ejecuta npm install para instalar las dependencias necesarias.
+
+3. Inicia el servidor con node server.js.
+
+4. Prueba los endpoints utilizando Postman o cualquier otra herramienta HTTP.

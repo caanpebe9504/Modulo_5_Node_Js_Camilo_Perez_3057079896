@@ -10,7 +10,7 @@ Devuelve la lista completa de estudiantes. Ejemplo http://localhost:3002/student
 
 #### Respuesta:
 
-```json
+```
 [
   { "id": 1, "name": "Alice", "age": 20, "major": "Computer Science" },
   { "id": 2, "name": "Bob", "age": 22, "major": "Mathematics" },
@@ -24,7 +24,7 @@ Devuelve los detalles de un estudiante específico según el id proporcionado. E
 
 #### Respuesta:
 
-```json
+```
 {
   "id": 1,
   "name": "Alice",
@@ -39,7 +39,7 @@ Elimina un estudiante específico por su id. Ejemplo: http://localhost:3002/stud
 
 #### Respuesta:
 
-```json
+```
 {
   "message": "Estudiante con ID 2 eliminado"
 }

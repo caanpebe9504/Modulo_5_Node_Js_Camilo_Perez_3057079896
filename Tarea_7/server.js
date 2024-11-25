@@ -14,7 +14,7 @@ const readStudents = () => {
   try {
     const data = fs.readFileSync(studentsFile);
     return JSON.parse(data);
-  } catch (err) {
+  } catch (error) {
     return []; 
   }
 };
@@ -23,7 +23,7 @@ const readStudents = () => {
 const saveStudents = (students) => {
   try {
     fs.writeFileSync(studentsFile, JSON.stringify(students, null, 2));
-  } catch (err) {
+  } catch (error) {
     console.error('Error al guardar el archivo:', err);
   }
 };
@@ -35,12 +35,12 @@ app.get('/students', (req, res) => {
 
 app.get('/students/:id', (req, res) => {
   const students = readStudents();
-  const student = students.find(st => st.id === parseInt(req.params.id));
+  const student = students.find(student => student.id === parseInt(req.params.id));
 
-  if (student) {
-    res.status(200).json(student);
+  if (studentudent) {
+    res.studentatus(200).json(studentudent);
   } else {
-    res.status(404).json({ message: 'Estudiante no encontrado' });
+    res.studentatus(404).json({ message: 'Estudentudiante no encontrado' });
   }
 });
 
@@ -48,7 +48,7 @@ app.delete('/students/:id', (req, res) => {
   const students = readStudents();
   const studentId = parseInt(req.params.id);
 
-  const studentIndex = students.findIndex(st => st.id === studentId);
+  const studentIndex = students.findIndex(student => student.id === studentId);
   if (studentIndex === -1) {
     return res.status(404).json({ message: 'Estudiante no encontrado' });
   }

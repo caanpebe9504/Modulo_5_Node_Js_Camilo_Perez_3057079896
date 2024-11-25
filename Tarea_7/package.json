@@ -1,0 +1,16 @@
+{
+  "name": "tarea_7",
+  "version": "1.0.0",
+  "description": "1. Crear un servidor HTTP utilizando la librería express de Node.js.\r 2. Implementar dos endpoints accesibles mediante el método GET.\r 3. Utilizar un array o un archivo .json como base de datos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security"
+  }
+}

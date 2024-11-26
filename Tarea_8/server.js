@@ -1,62 +1,72 @@
-const express = require("express");
-const fs = require("fs");
-const bodyParser = require("body-parser");
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 3002;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
-const loadStudents = () => {
+const studentsFile = path.join(__dirname, 'students.json');
+
+
+const readStudents = () => {
   try {
-    const data = fs.readFileSync("./students.json", "utf8");
+    const data = fs.readFileSync(studentsFile);
     return JSON.parse(data);
-  } catch (err) {
-    return [];
+  } catch (error) {
+    return []; 
   }
 };
 
 
 const saveStudents = (students) => {
-  fs.writeFileSync("./students.json", JSON.stringify(students, null, 2));
+  try {
+    fs.writeFileSync(studentsFile, JSON.stringify(students, null, 2));
+  } catch (error) {
+    console.error('Error al guardar el archivo:', error);
+  }
 };
 
 
-const generateId = (students) => {
-  const lastId = students.length > 0 ? students[students.length - 1].id : 0;
-  return lastId + 1;
-};
+app.get('/students', (req, res) => {
+  const students = readStudents();
+  res.status(200).json(students);
+});
 
 
-app.post("/students", (req, res) => {
+app.get('/students/:id', (req, res) => {
+  const students = readStudents();
+  const student = students.find(student => student.id === parseInt(req.params.id));
+
+  if (student) {
+    res.status(200).json(student);
+  } else {
+    res.status(404).json({ message: 'Estudiante no encontrado' });
+  }
+});
+
+
+app.post('/students', (req, res) => {
   const { name, age, major } = req.body;
 
-  if (!name || typeof name !== "string" || name.trim() === "") {
-    return res
-      .status(400)
-      .json({ error: "El nombre es obligatorio y debe ser un texto no vacío" });
+
+  if (!name || typeof name !== 'string' || name.trim() === '') {
+    return res.status(400).json({ message: 'El nombre es obligatorio y debe ser una cadena de texto válida.' });
   }
 
-  if (typeof age !== "number" || age <= 0) {
-    return res
-      .status(400)
-      .json({ error: "La edad debe ser un número positivo" });
+  if (!Number.isInteger(age) || age <= 0) {
+    return res.status(400).json({ message: 'La edad debe ser un número entero positivo.' });
   }
 
-  if (!major || typeof major !== "string" || major.trim() === "") {
-    return res
-      .status(400)
-      .json({ error: "El major es obligatorio y debe ser un texto no vacío" });
+  if (!major || typeof major !== 'string' || major.trim() === '') {
+    return res.status(400).json({ message: 'La especialidad (major) es obligatoria y debe ser una cadena de texto válida.' });
   }
 
-  const students = loadStudents();
-  const newStudent = {
-    id: generateId(students),
-    name,
-    age,
-    major,
-  };
+  const students = readStudents();
+  const newId = students.length > 0 ? Math.max(...students.map(student => student.id)) + 1 : 1;
 
+  const newStudent = { id: newId, name, age, major };
   students.push(newStudent);
   saveStudents(students);
 
@@ -64,68 +74,53 @@ app.post("/students", (req, res) => {
 });
 
 
-app.put("/students/:id", (req, res) => {
-  const studentId = parseInt(req.params.id, 10);
+app.put('/students/:id', (req, res) => {
   const { name, age, major } = req.body;
-
-  const students = loadStudents();
-  const studentIndex = students.findIndex(
-    (student) => student.id === studentId
-  );
+  const studentId = parseInt(req.params.id);
+  
+  const students = readStudents();
+  const studentIndex = students.findIndex(student => student.id === studentId);
 
   if (studentIndex === -1) {
-    return res.status(404).json({ error: "Estudiante no encontrado" });
+    return res.status(404).json({ message: 'Estudiante no encontrado' });
   }
 
 
-  if (name && (typeof name !== "string" || name.trim() === "")) {
-    return res
-      .status(400)
-      .json({ error: "El nombre debe ser un texto no vacío" });
+  if (name && (typeof name !== 'string' || name.trim() === '')) {
+    return res.status(400).json({ message: 'El nombre debe ser una cadena de texto válida.' });
   }
 
-  if (age && (typeof age !== "number" || age <= 0)) {
-    return res
-      .status(400)
-      .json({ error: "La edad debe ser un número positivo" });
+  if (age && (!Number.isInteger(age) || age <= 0)) {
+    return res.status(400).json({ message: 'La edad debe ser un número entero positivo.' });
   }
 
-  if (major && (typeof major !== "string" || major.trim() === "")) {
-    return res
-      .status(400)
-      .json({ error: "El major debe ser un texto no vacío" });
+  if (major && (typeof major !== 'string' || major.trim() === '')) {
+    return res.status(400).json({ message: 'La especialidad debe ser una cadena de texto válida.' });
   }
 
-  const updatedStudent = {
-    ...students[studentIndex],
-    name: name || students[studentIndex].name,
-    age: age || students[studentIndex].age,
-    major: major || students[studentIndex].major,
-  };
+  if (name) students[studentIndex].name = name;
+  if (age) students[studentIndex].age = age;
+  if (major) students[studentIndex].major = major;
 
-  students[studentIndex] = updatedStudent;
   saveStudents(students);
 
-  res.status(200).json(updatedStudent);
+  res.status(200).json(students[studentIndex]);
 });
 
 
-app.delete("/students/:id", (req, res) => {
-  const studentId = parseInt(req.params.id, 10);
+app.delete('/students/:id', (req, res) => {
+  const students = readStudents();
+  const studentId = parseInt(req.params.id);
 
-  const students = loadStudents();
-  const studentIndex = students.findIndex(
-    (student) => student.id === studentId
-  );
-
+  const studentIndex = students.findIndex(student => student.id === studentId);
   if (studentIndex === -1) {
-    return res.status(404).json({ error: "Estudiante no encontrado" });
+    return res.status(404).json({ message: 'Estudiante no encontrado' });
   }
 
   students.splice(studentIndex, 1);
   saveStudents(students);
 
-  res.status(200).json({ message: "Estudiante eliminado" });
+  res.status(200).json({ message: `Estudiante con ID ${studentId} eliminado` });
 });
 
 

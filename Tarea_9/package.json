@@ -1,0 +1,15 @@
+{
+  "name": "tarea_9",
+  "version": "1.0.0",
+  "description": "El objetivo de esta tarea es que implementes un middleware de autorización en tu API de estudiantes. Este middleware debe verificar que un token de autorización específico esté presente en los headers de la solicitud para permitir las operaciones de escritura (POST, PUT, DELETE). Si el token no está presente o es incorrecto, la solicitud debe ser rechazada con un código de estado 403 (Forbidden).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
